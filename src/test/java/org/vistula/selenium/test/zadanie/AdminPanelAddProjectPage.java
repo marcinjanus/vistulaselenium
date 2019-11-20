@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AdminPanelAddNewProjectPage {
+public class AdminPanelAddProjectPage {
     private WebDriver driver;
 
     @FindBy (css = "input#name") private WebElement title;
@@ -14,7 +14,7 @@ public class AdminPanelAddNewProjectPage {
     @FindBy (id = "save") private WebElement save;
     @FindBy (className = "activeMenu") private WebElement projects;
 
-    public AdminPanelAddNewProjectPage(WebDriver driver) {
+    public AdminPanelAddProjectPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }

@@ -15,10 +15,22 @@ public class AdminPanelProjectsPage {
 
     @FindBy (id = "search") private WebElement searchArea;
     @FindBy (id = "j_searchButton") private WebElement searchButton;
+    @FindBy(className = "button_link") private WebElement newProject;
 
     public AdminPanelProjectsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+
+    public void verifyProjectsPageIsLoaded() {
+        new WebDriverWait(driver, 3)
+                .until(ExpectedConditions.presenceOfElementLocated(By.className("content_title")));
+
+        Assertions.assertThat(driver.getTitle()).contains("Projekty");
+    }
+
+    public void clickAddProject() {
+        newProject.click();
     }
 
     public void enterTheProjectTitle(String randomTitle) {
@@ -37,12 +49,5 @@ public class AdminPanelProjectsPage {
     public void verifyProjectTitle(String randomTitle) {
         WebElement foundTitle = driver.findElement(By.cssSelector("td"));
         Assertions.assertThat(foundTitle.getAttribute("innerText")).isEqualTo(randomTitle);
-    }
-
-
-    @FindBy(className = "button_link") private WebElement newProject;
-
-    public void selectAddProject() {
-        newProject.click();
     }
 }

@@ -9,32 +9,26 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
+public class DashboardPage {
 
     private WebDriver driver;
 
-    @FindBy(id = "email")
-    private WebElement email;
-    @FindBy(id = "password")
-    private WebElement password;
-    @FindBy(id = "login")
-    private WebElement login;
+    @FindBy (className = "header_admin")
+    private WebElement adminPanel;
 
-    public LoginPage(WebDriver driver) {
+    public DashboardPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public void verifyIsLoaded() {
+    public void verifyDashboardPageIsLoaded() {
         new WebDriverWait(driver, 3)
             .until(ExpectedConditions.presenceOfElementLocated(By.id("footer")));
 
         Assertions.assertThat(driver.getTitle()).contains("Kokpit");
     }
 
-    public void login( String emailText, String passwordText) {
-        email.sendKeys(emailText);
-        password.sendKeys(passwordText);
-        login.click();
+    public void openAdminPage() {
+        adminPanel.click();
     }
 }
