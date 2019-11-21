@@ -22,7 +22,7 @@ public class TestArenaTest extends BaseTest {
         AdminPanelAddProjectPage adminPanelAddProjectPage = new AdminPanelAddProjectPage(driver);
         adminPanelAddProjectPage.verifyAddProjectPageIsLoaded();
         String randomName = RandomStringUtils.randomAlphabetic(20);
-        String randomPrefix = RandomStringUtils.randomAlphabetic(5);
+        String randomPrefix = RandomStringUtils.randomAlphabetic(6);
         String randomDescription = RandomStringUtils.randomAlphabetic(50);
         adminPanelAddProjectPage.addProject(randomName, randomPrefix, randomDescription);
 
