@@ -8,8 +8,8 @@ public class TestArenaTest extends BaseTest {
     @Test
     public void createAndSearchProject (){
         LoginPage loginPage = new LoginPage(driver);
-        //loginPage.verifyIsLoaded();
-        loginPage.login("administrator@testarena.pl", "sumXQQ72$L");
+        loginPage.verifyLoginPageIsLoaded();
+        loginPage.loginAsAdmin("administrator@testarena.pl", "sumXQQ72$L");
 
         DashboardPage dashboardPage = new DashboardPage(driver);
         dashboardPage.verifyDashboardPageIsLoaded();
@@ -19,21 +19,22 @@ public class TestArenaTest extends BaseTest {
         adminPanelProjectsPagePage.verifyProjectsPageIsLoaded();
         adminPanelProjectsPagePage.clickAddProject();
 
-        AdminPanelAddProjectPage newProjectPage = new AdminPanelAddProjectPage(driver);
-        String randomTitle = RandomStringUtils.randomAlphabetic(20);
+        AdminPanelAddProjectPage adminPanelAddProjectPage = new AdminPanelAddProjectPage(driver);
+        adminPanelAddProjectPage.verifyAddProjectPageIsLoaded();
+        String randomName = RandomStringUtils.randomAlphabetic(20);
         String randomPrefix = RandomStringUtils.randomAlphabetic(5);
         String randomDescription = RandomStringUtils.randomAlphabetic(50);
-        newProjectPage.fillTitle(randomTitle);
-        newProjectPage.fillPrefix(randomPrefix);
-        newProjectPage.fillDescription(randomDescription);
-        newProjectPage.saveNewProject();
+        adminPanelAddProjectPage.addProject(randomName, randomPrefix, randomDescription);
 
-        newProjectPage.goToSearchProjectsPage();
+        AdminPanelProjectViewPage adminPanelProjectViewPage = new AdminPanelProjectViewPage(driver);
+        adminPanelProjectViewPage.verifyProjectIsAdded();
+        adminPanelProjectViewPage.closingInfoBox();
+        adminPanelProjectViewPage.goToSearchProjectsPage();
 
         AdminPanelProjectsPage searchProjectsPage = new AdminPanelProjectsPage(driver);
-        searchProjectsPage.enterTheProjectTitle(randomTitle);
-        searchProjectsPage.searchTheProject();
+        searchProjectsPage.inputProjectName(randomName);
+        searchProjectsPage.searchProjectName();
         searchProjectsPage.waitForResults();
-        searchProjectsPage.verifyProjectTitle(randomTitle);
+        searchProjectsPage.verifyProjectName(randomName);
     }
 }

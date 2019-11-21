@@ -14,7 +14,7 @@ public class DashboardPage {
     private WebDriver driver;
 
     @FindBy (className = "header_admin")
-    private WebElement adminPanel;
+    private WebElement adminPanelButton;
 
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
@@ -23,12 +23,12 @@ public class DashboardPage {
 
     public void verifyDashboardPageIsLoaded() {
         new WebDriverWait(driver, 3)
-            .until(ExpectedConditions.presenceOfElementLocated(By.id("footer")));
+            .until(ExpectedConditions.presenceOfElementLocated(By.id("wrapper")));
 
         Assertions.assertThat(driver.getTitle()).contains("Kokpit");
     }
 
     public void openAdminPage() {
-        adminPanel.click();
+        adminPanelButton.click();
     }
 }

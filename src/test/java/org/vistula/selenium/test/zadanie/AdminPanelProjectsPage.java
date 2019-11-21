@@ -13,9 +13,12 @@ public class AdminPanelProjectsPage {
 
     private WebDriver driver;
 
-    @FindBy (id = "search") private WebElement searchArea;
-    @FindBy (id = "j_searchButton") private WebElement searchButton;
-    @FindBy(className = "button_link") private WebElement newProject;
+    @FindBy (className = "button_link")
+    private WebElement newProjectButton;
+    @FindBy (id = "search")
+    private WebElement searchInput;
+    @FindBy (id = "j_searchButton")
+    private WebElement searchButton;
 
     public AdminPanelProjectsPage(WebDriver driver) {
         this.driver = driver;
@@ -30,14 +33,14 @@ public class AdminPanelProjectsPage {
     }
 
     public void clickAddProject() {
-        newProject.click();
+        newProjectButton.click();
     }
 
-    public void enterTheProjectTitle(String randomTitle) {
-        searchArea.sendKeys(randomTitle);
+    public void inputProjectName(String randomName) {
+        searchInput.sendKeys(randomName);
     }
 
-    public void searchTheProject() {
+    public void searchProjectName() {
         searchButton.click();
     }
 
@@ -46,8 +49,8 @@ public class AdminPanelProjectsPage {
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("table")));
     }
 
-    public void verifyProjectTitle(String randomTitle) {
-        WebElement foundTitle = driver.findElement(By.cssSelector("td"));
-        Assertions.assertThat(foundTitle.getAttribute("innerText")).isEqualTo(randomTitle);
+    public void verifyProjectName(String randomName) {
+        WebElement foundName = driver.findElement(By.cssSelector("td"));
+        Assertions.assertThat(foundName.getAttribute("innerText")).isEqualTo(randomName);
     }
 }

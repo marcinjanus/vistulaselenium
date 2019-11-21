@@ -14,27 +14,27 @@ public class LoginPage {
     private WebDriver driver;
 
     @FindBy(id = "email")
-    private WebElement email;
+    private WebElement emailInput;
     @FindBy(id = "password")
-    private WebElement password;
+    private WebElement passwordInput;
     @FindBy(id = "login")
-    private WebElement login;
+    private WebElement loginButton;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public void verifyIsLoaded() {
+    public void verifyLoginPageIsLoaded() {
         new WebDriverWait(driver, 3)
-            .until(ExpectedConditions.presenceOfElementLocated(By.id("footer")));
+            .until(ExpectedConditions.presenceOfElementLocated(By.id("login")));
 
-        Assertions.assertThat(driver.getTitle()).contains("Kokpit");
+        Assertions.assertThat(loginButton.isDisplayed());
     }
 
-    public void login( String emailText, String passwordText) {
-        email.sendKeys(emailText);
-        password.sendKeys(passwordText);
-        login.click();
+    public void loginAsAdmin( String emailText, String passwordText) {
+        emailInput.sendKeys(emailText);
+        passwordInput.sendKeys(passwordText);
+        loginButton.click();
     }
 }
