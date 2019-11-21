@@ -6,7 +6,7 @@ import org.junit.Test;
 public class TestArenaTest extends BaseTest {
 
     @Test
-    public void createAndSearchProject (){
+    public void addAndSearchProject (){
         LoginPage loginPage = new LoginPage(driver);
         loginPage.verifyLoginPageIsLoaded();
         loginPage.loginAsAdmin("administrator@testarena.pl", "sumXQQ72$L");
@@ -32,9 +32,8 @@ public class TestArenaTest extends BaseTest {
         adminPanelProjectViewPage.goToSearchProjectsPage();
 
         AdminPanelProjectsPage searchProjectsPage = new AdminPanelProjectsPage(driver);
-        searchProjectsPage.inputProjectName(randomName);
-        searchProjectsPage.searchProjectName();
-        searchProjectsPage.waitForResults();
+        searchProjectsPage.inputAndSearchProjectName(randomName);
+        searchProjectsPage.waitForSearchResults();
         searchProjectsPage.verifyProjectName(randomName);
     }
 }

@@ -36,15 +36,12 @@ public class AdminPanelProjectsPage {
         newProjectButton.click();
     }
 
-    public void inputProjectName(String randomName) {
+    public void inputAndSearchProjectName(String randomName) {
         searchInput.sendKeys(randomName);
-    }
-
-    public void searchProjectName() {
         searchButton.click();
     }
 
-    public void waitForResults() {
+    public void waitForSearchResults() {
         new WebDriverWait(driver, 3)
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("table")));
     }

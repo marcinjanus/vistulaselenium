@@ -39,19 +39,4 @@ public class AdminPanelAddProjectPage {
         descriptionInput.sendKeys(randomDescription);
         saveButton.click();
     }
-//    public void inputProjectName(String randomName) {
-//        titleInput.sendKeys(randomName);
-//    }
-//
-//    public void inputProjectPrefix (String randomPrefix) {
-//        prefixInput.sendKeys(randomPrefix);
-//    }
-//
-//    public void inputProjectDescription (String randomDescription) {
-//        descriptionInput.sendKeys(randomDescription);
-//    }
-//
-//    public void saveProject() {
-//        saveButton.click();
-//    }
 }
